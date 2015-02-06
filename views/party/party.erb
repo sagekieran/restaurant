@@ -1,0 +1,15 @@
+Table Number: <%= @party.t_number %><br>
+Number of Guests: <%= @party.guests %><br>
+Paid:
+<% if @party.paid %>
+Yes
+<% else %>
+No
+<% end %>
+<br>
+<br>
+<a href="/parties/<%= @party.id %>/order">Add Order for Table <%= @party.t_number %></a><br>
+<a href="/parties/<%= @party.id %>/edit">Edit Party</a><br>
+<a href="/parties/<%= @party.id %>/receipt">View Receipt</a><br>
+<a href="/parties/<%= @party.id %>/close">Close Out Party</a><br>
+<a href="/parties">All Parties</a>

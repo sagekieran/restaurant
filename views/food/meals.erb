@@ -1,0 +1,8 @@
+<% @meals.each do |meal|%>
+  <ul>
+    <li><a href="/meals/<%= meal.id %>"><%= meal.name %></a></li>
+  </ul>
+<% end %>
+<br>
+<br>
+<h2><a href="/meals/new">Add New Menu Item</a></h2>

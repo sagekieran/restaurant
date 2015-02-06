@@ -1,0 +1,7 @@
+Order ID: <%= @order.id %><br>
+Table Number: <%= @order.party.t_number %><br>
+Meal Ordered: <%= @order.meal.name %><br>
+Quantity: <%= @order.quantity %>
+<br>
+<br>
+<a href="/parties/<%= @order.party.id %>">Add Another Order for Table <%= @order.party.t_number %></a>

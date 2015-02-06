@@ -1,0 +1,20 @@
+<h2>Edit Menu Item</h2>
+
+<form action="/meals/<%= @meal.id %>" method="post">
+  Name: <input type="text" name="meal[name]" value="<%= @meal.name %>"><br>
+  <br>
+  Cuisine Type: <input type="text" name="meal[cuisine_type]" value="<%= @meal.cuisine_type %>"><br>
+  <br>
+  Price: <input type="text" name="meal[price]" value="<%= @meal.price %>"><br>
+  <br>
+  <input type="hidden" name="_method" value="PATCH">
+  <input type="Submit">
+
+</form>
+
+<h2>Delete Menu Item</h2>
+
+<form action="/meals/<%= @meal.id %>" method='POST'>
+  <input type="hidden" name="_method" value="DELETE">
+  <input type="submit" value='Delete'>
+</form>

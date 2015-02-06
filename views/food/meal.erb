@@ -1,0 +1,9 @@
+Name: <%= @meal.name %><br>
+Cuisine Type: <%= @meal.cuisine_type %><br>
+Price: <%= @meal.price %><br>
+Allergens:
+<% if @meal.allergens %>
+<%= @meal.allergens %>
+<% else %>
+None
+<% end %>
