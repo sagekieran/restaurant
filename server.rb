@@ -191,12 +191,12 @@ class Restaurant < Sinatra::Base
   end
 
   post '/tables/new' do
-    if params[:table]['number'].is_a? Integer and params[:table]['seats'].is_a? Integer
+    # if params[:table]['number'].is_a? Integer and params[:table]['seats'].is_a? Integer
       Teble.create(params['table'])
       redirect to('/index')
-    else
-      erb :tableoops
-    end
+    # else
+    #   erb :tableoops
+    # end
   end
 
   get '/server/new' do
