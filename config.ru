@@ -15,6 +15,6 @@ else
     host: 'localhost',
     port: 5432
   }
-
+end
 require './server.rb'
 run Restaurant
