@@ -1,0 +1,12 @@
+<h3 class='login'>Login</h3>
+<form action="/login" method="post">
+Name: <br>
+<select name="server[id]">
+<% @servers.each do |server| %>
+<option value="<%= server.id %>"><%= server.name %></option>
+<%end%>
+</select><br><br>
+Password: <br>
+<input type='password' name='server[password]'>
+<input type='Submit'>
+</form>

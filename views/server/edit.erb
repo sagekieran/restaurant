@@ -1,0 +1,20 @@
+<h2>Edit Server:</h2><br><br>
+
+<form action="/server/<%= @server.id %>" method="post">
+
+  Name: <br> <input type="text" name="server[name]" value="<%= @server.name %>"> <br>
+  <br>
+  Password: <br> <input type="text" name="server[password]"> <br>
+  <br>
+
+  <input type="hidden" name="_method" value="PATCH"> <br>
+
+  <input type="submit">
+
+</form> <br><br>
+
+<h2>Delete Server:</h2><br>
+<form action="/server/<%= @server.id %>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit">
+</form>

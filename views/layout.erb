@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <title>Restaurant Manager</title>
+    <link rel="stylesheet" href="/css/layout.css">
+  </head>
+  <body>
+    <header>
+      <nav>
+      <h2>
+        <ul>
+          <li><a href='/index'>Home</a></li>
+          <li><a href='/parties'>Parties</a></li>
+          <li><a href='/meals'>Menu Items</a></li>
+        </ul>
+      </h2>
+      </nav>
+    <div class='user'>
+      <% if session[:server_id] %>
+      <% server = Server.find(session[:server_id]) %>
+      Current Server: <a href='/server/<%= server.id %>/edit'><%= server.name %></a> <a href='/logout'>[Log Out]</a>
+      <% else %>
+      <a href="/">Log In</a>
+      <% end %>
+    </div>
+    </header>
+    <div class='yield'>
+      <%= yield %>
+    </div>
+  </body>
+  <footer>
+    <div>
+      <ul>
+        <li><a href='/tables/new'>Add Table</a></li>
+        <li><a href='/meals/new'>Add Menu Item</a></li>
+        <li><a href='/server/new'>Add Employee</a></li>
+      </ul>
+    </div>
+  </footer>
+</html>
