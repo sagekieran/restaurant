@@ -1,9 +1,12 @@
-Name: <%= @meal.name %><br>
-Cuisine Type: <%= @meal.cuisine_type %><br>
-Price: <%= @meal.price %><br>
-Allergens:
-<% if @meal.allergens %>
-<%= @meal.allergens %>
-<% else %>
-None
-<% end %>
+<div>
+  Name: <%= @meal.name %><br>
+  Cuisine Type: <%= @meal.cuisine_type %><br>
+  Price: $<%= @meal.price %>0<br>
+  Allergens:
+  <% if @meal.allergens %>
+    <%= @meal.allergens %>
+  <% else %>
+    None
+  <% end %><br><br>
+  <a href='/meals/<%= @meal.id %>/edit'>Edit Item</a>
+</div>

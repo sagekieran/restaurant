@@ -4,7 +4,13 @@
   <% if party.paid %>
   <% else %>
   <ul>
-    <li><a href="/parties/<%= party.id %>">Table Number: <%= party.t_number %></a></li>
+    <li>
+      <% if party.server_id == @server_id %>
+      <a href="/parties/<%= party.id %>">Table Number: <%= party.teble.number %> *</a>
+      <% else  %>
+      <a href="/parties/<%= party.id %>">Table Number: <%= party.teble.number %></a>
+      <% end %>
+    </li>
   </ul>
   <% end %>
 <% end %>

@@ -2,6 +2,8 @@ class Party < ActiveRecord::Base
 
   has_many :orders
   has_many :meals, through: :orders
+  belongs_to :server
+  belongs_to :teble
 
 
   def total
@@ -10,7 +12,7 @@ class Party < ActiveRecord::Base
     orders.each do |order|
       total += order.meal.price.to_i * order.quantity.to_i
     end
-    total
+    total.to_f
   end
-
+  
 end

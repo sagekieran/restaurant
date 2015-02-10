@@ -1,6 +1,7 @@
-<h1>Add Order for Table <%= @party.t_number %></h1>
+<h1>Add Order for Table <%= @party.teble.number %></h1>
 <form action="/orders" method="post">
   <input type="hidden" name="order[party_id]" value="<%= @party.id %>">
+
   <select name="order[meal_id]">
     <% @meals.each do |meal| %>
     <option value="<%= meal.id %>"><%= meal.name %></option>
@@ -8,9 +9,9 @@
   </select>
 
   <select name="order[quantity]">
-    <% 10.times do |x| %>
-    <% x += 1 %>
-    <option value="<%= x %>"><%= x %></option>
+    <% 10.times do |i| %>
+    <% i += 1 %>
+    <option value="<%= i %>"><%= i %></option>
     <% end %>
   </select>
   <input type="Submit">

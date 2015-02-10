@@ -1,11 +1,25 @@
 <h1>Add New Party</h1>
 <form action="/parties" method="post">
-  Table Number: <input type="text" name="party[t_number]"><br>
-  <br>
-  Number of Guests: <input type="text" name="party[guests]"><br>
+
+  Table Number:
+  <select name="party[teble_id]">
+  <% @available.each do |table| %>
+    <option value="<%= table.id %>"><%= table.number %></option>
+  <% end %>
+  </select>
+  <br><br>
+
+  Number of Guests:
+  <select name="party[guests]">
+  <% 20.times do |i| %>
+    <% i += 1 %>
+    <option value="<%= i %>"><%= i %></option>
+  <% end %>
+  </select>
 
   <input type="hidden" name="party[paid]" value="false"><br>
-  <br>
+  <input type="hidden" name="party[server_id]" value="<%= @server_id %>"><br>
   <input type="Submit">
 
 </form>
+<br>

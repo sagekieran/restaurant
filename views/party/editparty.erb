@@ -1,10 +1,20 @@
-<h1>Edit Party at Table <%= @party.t_number %></h1>
+<h1>Edit Party at Table <%= @party.teble.number %></h1>
 <form action="/parties" method="post">
-  Table Number: <input type="text" name="party[t_number]"><br>
+  Table Number:
+  <select name="party[teble_id]">
+  <% @tables.each do |table| %>
+    <option value="<%= table.id %>"><%= table.number %></option>
+  <% end %>
+  </select>
   <br>
-  Number of Guests: <input type="text" name="party[guests]"><br>
-  <input type="hidden" name="party[paid]" value="false"><br>
-  <input type="hidden" name="_method" value="patch"><br>
-  <br>
-  <input type="Submit">
+
+  Number of Guests:
+  <select name="party[guests]">
+  <% 20.times do |i| %>
+    <% i += 1 %>
+    <option value="<%= i %>"><%= i %></option>
+  <% end %>
+  </select>
+  <br><br>
+  <input type="submit">
 </form>

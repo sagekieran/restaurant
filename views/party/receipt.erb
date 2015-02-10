@@ -1,18 +1,18 @@
 Items Ordered:
 <ol>
 <% @party.meals.each do |meal| %>
-    <li><%= meal.name %></li>
+    <li><%= meal.name %> $<%= meal.price %>0</li>
 <% end %>
 </ol>
-Total: $<%= @party.total %>.00<br><br>
+Total: $<%= @party.total %>0<br><br>
 
 <% fifteen = @party.total * 0.15 %>
-15% Tip: $<%= fifteen.to_i %>.00<br><br>
+15% Tip: $<%= fifteen %>0<br><br>
 
 <% twenty = @party.total * 0.20 %>
-20% Tip: $<%= twenty.to_i %>.00<br><br>
+20% Tip: $<%= twenty %>0<br><br>
 
 <% twofive = @party.total * 0.25 %>
-25% Tip: $<%= twofive.to_i %>.00<br><br>
+25% Tip: $<%= twofive %>0<br><br>
 
 <a href="/parties/<%= @party.id %>">Back</a>

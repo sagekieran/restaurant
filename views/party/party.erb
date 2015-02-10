@@ -1,4 +1,4 @@
-Table Number: <%= @party.t_number %><br>
+Table Number: <%= @party.teble.number %><br>
 Number of Guests: <%= @party.guests %><br>
 Paid:
 <% if @party.paid %>
@@ -8,8 +8,7 @@ No
 <% end %>
 <br>
 <br>
-<a href="/parties/<%= @party.id %>/order">Add Order for Table <%= @party.t_number %></a><br>
-<a href="/parties/<%= @party.id %>/edit">Edit Party</a><br>
-<a href="/parties/<%= @party.id %>/receipt">View Receipt</a><br>
+<a href="/parties/<%= @party.id %>/order">Add Order for Table <%= @party.teble.number%></a><br>
+<a href="/parties/<%= @party.id %>/receipt">View Orders/Receipt</a><br>
 <a href="/parties/<%= @party.id %>/close">Close Out Party</a><br>
-<a href="/parties">All Parties</a>
+<a href="/parties/<%= @party.id %>/edit">Edit Party</a><br>

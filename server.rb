@@ -13,6 +13,23 @@ class Restaurant < Sinatra::Base
   end
 
   get '/' do
+    @servers = Server.all
+    erb :login
+  end
+
+  post '/login' do
+    id = params[:server]['id']
+    password = params[:server]['password']
+    server = Server.find(id)
+    if server.password == password
+      session[:server_id] = server.id
+      redirect to('/index')
+    else
+      redirect to('/')
+    end
+  end
+
+  get '/index' do
     erb :index
   end
 
@@ -31,8 +48,14 @@ class Restaurant < Sinatra::Base
   end
 
   post '/meals' do
-    meal = Meal.create(params[:meal])
-    redirect to("/meals/#{meal.id}")
+    name = params[:meal]['name']
+    check = Meal.check(name)
+    if check
+      meal = Meal.create(params[:meal])
+      redirect to("/meals/#{meal.id}")
+    else
+      erb :mealoops
+    end
   end
 
   get '/meals/:id/edit' do |id|
@@ -53,11 +76,21 @@ class Restaurant < Sinatra::Base
   end
 
   get '/parties' do
+    @server_id = session[:server_id]
     @parties = Party.all
     erb :'party/parties'
   end
 
   get '/parties/new' do
+    @available = []
+    tables = Teble.all
+    tables.each do |table|
+      if table.available?
+        @available << table
+      end
+    end
+
+    @server_id = session[:server_id]
     erb :'party/newparty'
   end
 
@@ -85,7 +118,8 @@ class Restaurant < Sinatra::Base
 
   post '/parties/:id/close' do |id|
     party = Party.find(id)
-    party.update(paid: true, tip: params[:tip]['amount'])
+    tip = params[:tip]['amount'].to_f
+    party.update(paid: true, tip: tip)
     redirect to('/parties')
   end
 
@@ -95,6 +129,7 @@ class Restaurant < Sinatra::Base
   end
 
   get '/parties/:id/edit' do |id|
+    @tables = Teble.all
     @party = Party.find(id)
     erb :'party/editparty'
   end
@@ -145,12 +180,60 @@ class Restaurant < Sinatra::Base
   end
 
   get '/tips' do
-    @tips = 0.00
-    partys = Party.all
-    partys.each do |party|
-      @tips += party.tip.to_f
-    end
+    id = session[:server_id]
+    server = Server.find(id)
+    @tips = server.todays_tips
     erb :tips
+  end
+
+  get '/tables/new' do
+    erb :'/tables/new'
+  end
+
+  post '/tables/new' do
+    if params['table']['number'].is_a? Integer and params['table']['seats'].is_a? Integer
+      Teble.create(params['table'])
+      redirect to('/index')
+    else
+      erb :tableoops
+    end
+  end
+
+  get '/server/new' do
+    erb :'server/new'
+  end
+
+  post '/server/new' do
+    Server.create(params[:server])
+    redirect to('/')
+  end
+
+  get '/server/:id/edit' do |id|
+    @server = Server.find(id)
+    erb :'server/edit'
+  end
+
+  patch '/server/:id' do |id|
+    server = Server.find(id)
+    server.update(params[:server])
+    redirect to('/index')
+  end
+
+  delete '/server/:id' do |id|
+    server = Server.find(id)
+    server.destroy
+    session[:server_id] = nil
+    redirect to('/')
+  end
+
+
+  get '/logout' do
+    session[:server_id] = nil
+    redirect to('/')
+  end
+
+  get '/*' do
+    redirect to('/')
   end
 
 end

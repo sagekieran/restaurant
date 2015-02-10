@@ -1,0 +1,62 @@
+body {
+  font-family: Helvetica;
+  background-image: url(./images/dark_embroidery.png);
+  background-color: grey; }
+  body a {
+    color: black; }
+  body .yield {
+    display: block;
+    max-width: 500px;
+    max-height: 700px;
+    margin: 70px auto;
+    background-color: rgba(170, 170, 220, 0.5);
+    border: 2px black solid;
+    border-radius: 3%;
+    box-shadow: 0 0 10px black;
+    padding: 50px 50px; }
+  body header {
+    height: 40px;
+    background-color: rgba(200, 250, 220, 0.4);
+    border: 1px grey solid;
+    border-radius: 3%;
+    box-shadow: 0 0 10px black; }
+    body header nav {
+      text-align: center; }
+      body header nav ul {
+        list-style: none;
+        display: block;
+        margin: -10px 0 0 0; }
+        body header nav ul li {
+          display: inline;
+          margin: 0 20px 0 0; }
+  body footer {
+    height: 40px;
+    width: 99%;
+    background-color: rgba(200, 250, 220, 0.4);
+    border: 1px grey solid;
+    border-radius: 3%;
+    box-shadow: 0 0 10px black;
+    display: block;
+    position: absolute;
+    bottom: 0; }
+    body footer div {
+      text-align: center; }
+      body footer div ul {
+        list-style: none;
+        display: block;
+        margin: 10px auto 0 auto; }
+        body footer div ul li {
+          display: inline;
+          margin: 0 20px 0 0; }
+
+.login {
+  text-align: center;
+  margin: 0 0 30px 0; }
+
+.user {
+  color: white; }
+  .user a {
+    font: inherit;
+    color: white; }
+
+/*# sourceMappingURL=layout.css.map */

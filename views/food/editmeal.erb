@@ -1,11 +1,13 @@
 <h2>Edit Menu Item</h2>
 
 <form action="/meals/<%= @meal.id %>" method="post">
-  Name: <input type="text" name="meal[name]" value="<%= @meal.name %>"><br>
+  Name: <br> <input type="text" name="meal[name]" value="<%= @meal.name %>"><br>
   <br>
-  Cuisine Type: <input type="text" name="meal[cuisine_type]" value="<%= @meal.cuisine_type %>"><br>
+  Cuisine Type: <br> <input type="text" name="meal[cuisine_type]" value="<%= @meal.cuisine_type %>"><br>
   <br>
-  Price: <input type="text" name="meal[price]" value="<%= @meal.price %>"><br>
+  Price: <br> <input type="text" name="meal[price]" value="<%= @meal.price %>"><br>
+  <br>
+  Allergens:  <br> <input type="text" name="meal[allergens]">*if any<br>
   <br>
   <input type="hidden" name="_method" value="PATCH">
   <input type="Submit">
