@@ -18,10 +18,10 @@ class Restaurant < Sinatra::Base
   end
 
   post '/login' do
-    id = params[:server]['id']
-    password = params[:server]['password']
+    id = params[:server][:id]
     server = Server.find(id)
-    if server.password == password
+    password = BCrypt::Password.new(server.password)
+    if password.is_password?(params[:server][:password])
       session[:server_id] = server.id
       redirect to('/index')
     else
@@ -180,10 +180,14 @@ class Restaurant < Sinatra::Base
   end
 
   get '/tips' do
-    id = session[:server_id]
-    server = Server.find(id)
-    @tips = server.todays_tips
-    erb :tips
+    if session[:server_id]
+      id = session[:server_id]
+      server = Server.find(id)
+      @tips = server.todays_tips
+      erb :tips
+    else
+      redirect to('/')
+    end
   end
 
   get '/tables/new' do
@@ -204,8 +208,14 @@ class Restaurant < Sinatra::Base
   end
 
   post '/server/new' do
-    Server.create(params[:server])
-    redirect to('/')
+    name = params[:server]['name']
+    if params[:server][:password] == params[:server][:password2]
+      password = BCrypt::Password.create(params[:server]['password'])
+      Server.create(name: name, password: password)
+      redirect to('/')
+    else
+      erb :'server/new'
+    end
   end
 
   get '/server/:id/edit' do |id|
@@ -214,8 +224,10 @@ class Restaurant < Sinatra::Base
   end
 
   patch '/server/:id' do |id|
+    name = params[:server]['name']
+    password = BCrypt::Password.create(params[:server]['password'])
     server = Server.find(id)
-    server.update(params[:server])
+    server.update(name: name, password: password)
     redirect to('/index')
   end
 
